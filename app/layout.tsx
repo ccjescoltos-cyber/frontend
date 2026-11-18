@@ -1,7 +1,16 @@
-import { redirect } from "next/navigation";
-import { CONFIG } from "@/lib/config";
+import "./globals.css";
 
-export default function Home() {
+export default function Rootlayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return (
 
-    redirect(CONFIG.ROUTES.LOGIN);
+        <html lang="en" suppressHydrationWarning>
+
+            <body suppressHydrationWarning>{children}</body>
+        </html>
+
+    );
 }
