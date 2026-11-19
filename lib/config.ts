@@ -1,6 +1,6 @@
 export const CONFIG = {
   API_BASE_URL:
-    process.env.NEXT_PUBLIC_API_BASE_URL || "https://backend-00oa.onrender.com/",
+    process.env.NEXT_PUBLIC_API_BASE_URL || "https://backend-00oa.onrender.com",
   STORAGE_KEYS: {
     ACCESS_TOKEN: "accessToken",
     REFRESH_TOKEN: "refreshToken",
