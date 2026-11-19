@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -26,6 +27,7 @@ interface LoginResponse {
 export default function LoginPage() {
   const router = useRouter();
   const { isChecking } = useAuthGuard({ requireAuth: false });
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -56,35 +58,47 @@ export default function LoginPage() {
   return (
     <AuthLayout
       section="01 / Returning members"
-      heading="Your account, without the noise."
-      description="A clear, considered place to sign in and pick up where you left off."
+      heading="Welcome back!"
+      description="Manage your laundry services easily and keep everything organized."
     >
-      <Card className="auth-card">
+      <Card className="auth-card border-blue-100 bg-white shadow-xl shadow-blue-900/10">
         <CardHeader className="auth-card-header">
           <div className="auth-form-intro">
-            <p className="auth-form-kicker">Personal access</p>
-            <h2 className="auth-form-title">Sign in.</h2>
-            <p className="auth-form-description">
-              Enter your details to continue to your account.
+            <p className="auth-form-kicker text-blue-600">
+              LAUNDRY MANAGEMENT SYSTEM
+            </p>
+
+            <h2 className="auth-form-title text-slate-900">
+              Sign in.
+            </h2>
+
+            <p className="auth-form-description text-slate-500">
+              Enter your username and password to continue.
             </p>
           </div>
-          <div className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary">
+
+          <div className="flex size-11 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
             <KeyRound aria-hidden="true" size={21} strokeWidth={1.8} />
           </div>
         </CardHeader>
+
         <form onSubmit={handleLogin}>
           <CardContent className="auth-card-body">
             {error && (
               <div
                 role="alert"
-                className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-600 dark:border-red-900 dark:bg-red-950/50 dark:text-red-400"
+                className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-600"
               >
                 {error}
               </div>
             )}
+
             <div className="auth-fields">
               <div className="grid gap-2">
-                <Label htmlFor="username">Username</Label>
+                <Label htmlFor="username" className="text-slate-700">
+                  Username
+                </Label>
+
                 <Input
                   id="username"
                   type="text"
@@ -93,11 +107,15 @@ export default function LoginPage() {
                   autoComplete="username"
                   placeholder="Your username"
                   required
-                  className="auth-input"
+                  className="auth-input border-blue-100 bg-white focus-visible:ring-blue-500"
                 />
               </div>
+
               <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-slate-700">
+                  Password
+                </Label>
+
                 <Input
                   id="password"
                   type="password"
@@ -106,20 +124,36 @@ export default function LoginPage() {
                   autoComplete="current-password"
                   placeholder="Your password"
                   required
-                  className="auth-input"
+                  className="auth-input border-blue-100 bg-white focus-visible:ring-blue-500"
                 />
               </div>
             </div>
-            <Button type="submit" className="auth-submit w-full" disabled={loading}>
+
+            <Button
+              type="submit"
+              className="auth-submit w-full bg-blue-600 text-white hover:bg-blue-700"
+              disabled={loading}
+            >
               {loading ? "Logging in..." : "Sign in"}
-              {!loading && <ArrowRight aria-hidden="true" size={16} strokeWidth={1.75} />}
+
+              {!loading && (
+                <ArrowRight
+                  aria-hidden="true"
+                  size={16}
+                  strokeWidth={1.75}
+                />
+              )}
             </Button>
           </CardContent>
         </form>
+
         <CardContent className="auth-card-footer">
-          <p className="text-center text-sm text-muted-foreground">
-            Don&apos;t have an account?{" "}
-            <Link href={CONFIG.ROUTES.REGISTER}>
+          <p className="text-center text-sm text-slate-500">
+            Don't have an account?{" "}
+            <Link
+              href={CONFIG.ROUTES.REGISTER}
+              className="font-semibold text-blue-600 hover:text-blue-800"
+            >
               Create one
             </Link>
           </p>
